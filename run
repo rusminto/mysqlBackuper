@@ -1,9 +1,10 @@
 #!/bin/bash
 
 currentDate=$(date +%s)
-mysqldump --defaults-extra-file="/home/admin/mysqlBackuper/cred"  --single-transaction --quick --lock-tables=false myDatabaseName | gzip > "/home/admin/mysqlBackuper/dumps/${currentDate}"
+LOCATION="/home/ypti/backup/mysqlBackuper"
+mysqldump --defaults-extra-file="$LOCATION/cred"  --single-transaction --quick --lock-tables=false  ypti_dcs_dev_db_2  | xz -c > "$LOCATION/dumps/${currentDate}"
 
-fileNames=(/home/admin/backup/dumps/*)
+fileNames=($LOCATION/dumps/*)
 countFile=${#fileNames[@]}
 
 for ((i=countFile - 1,j=0;i>=0;i--,j++)); do
