@@ -1,0 +1,27 @@
+[main]
+dumperTool = mysqldump
+
+[mysqldump]
+options = -uYOUR_USERNAME -pYOUR_PASSWORD --single-transaction --quick --lock-tables=false YOUR_DATABASE
+
+[mydumper]
+host = 127.0.0.1
+user = root
+password = p455w0rd
+database = db
+options = 
+
+[myloader]
+host = 127.0.0.1
+user = root
+password = p455w0rd
+database = new_db
+
+[export]
+location = ./tmp
+retainFiles = 5
+compress = true
+
+[scheduler]
+enable = true
+backupTime = 23:59:59,04:00:00

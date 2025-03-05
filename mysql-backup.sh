@@ -2,7 +2,7 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )";
 CONFIG_LOCATION="$DIR/config.txt";
-TEMPLATE_LOCATION="$DIR/bin/template";
+TEMPLATE_LOCATION="$DIR/template";
 
 scheduler_enable="true";
 scheduler_backupTime="23:59:59";
@@ -46,7 +46,7 @@ checkMysqldump() {
 # parse config file
 parseConfigFile(){
 	if [ ! -f "$CONFIG_LOCATION" ]; then
-		cp "$TEMPLATE_LOCATION/config.txt" "$CONFIG_LOCATION";
+		cp "$TEMPLATE_LOCATION/config.sample.txt" "$CONFIG_LOCATION";
 		printf "Please edit $CONFIG_LOCATION first!\n";
 		printf "For more information, you can check https://github.com/mydumper/mydumper\n";
 		exit 0;
